@@ -26,6 +26,7 @@ development:
   password: cherry
 
 test:
+  <<: *default
   database: recipe_app_test
   username: postgres
   password: cherry
