@@ -1,6 +1,5 @@
 FactoryBot.define do
-    factory :user do
-      name { 'Arnold' }
-    end
+  factory :user do
+    name { 'Arnold' }
   end
-  
+end

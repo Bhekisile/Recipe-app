@@ -8,6 +8,5 @@ FactoryBot.define do
 
     # Define the association with the user
     user
-
   end
 end

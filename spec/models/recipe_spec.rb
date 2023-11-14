@@ -5,7 +5,7 @@ RSpec.describe Recipe, type: :model do
     it 'belongs to a user' do
       # Assuming you have a User model
       user = User.create(name: 'John Doe')
-      recipe = Recipe.new(name: 'Sample Recipe', user: user)
+      recipe = Recipe.new(name: 'Sample Recipe', user:)
 
       expect(recipe.user).to eq(user)
     end
