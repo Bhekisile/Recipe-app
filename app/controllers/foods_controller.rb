@@ -20,6 +20,5 @@ class FoodsController < ApplicationController
     end
   end
 
-  def destroy
-  end
+  def destroy; end
 end
