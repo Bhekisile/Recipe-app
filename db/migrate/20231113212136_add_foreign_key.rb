@@ -1,6 +1,6 @@
 class AddForeignKey < ActiveRecord::Migration[7.1]
   def change
-    AddForeignKey :food, :user, column: :user_id
-    AddForeignKey :recipe_food, :recipe, column: :recipe_id
+    add_foreign_key :foods, :users, column: :user_id
+    add_foreign_key :recipe_foods, :recipes, column: :recipe_id
   end
 end
