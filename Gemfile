@@ -71,4 +71,5 @@ group :test do
   gem 'shoulda-matchers'
 end
 
+gem 'rails-controller-testing'
 gem 'cssbundling-rails'
