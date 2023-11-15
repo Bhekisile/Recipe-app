@@ -1,0 +1,29 @@
+<div class="container custom-container">
+  <div class="d-flex justify-content-right">
+    <%= link_to 'Add Food', new_food_path(@foods), class: 'btn btn-success' %>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Food</th>
+        <th>Measurement unit</th>
+        <th>Unit price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @foods.each do |food| %>
+      <tr>
+        <td><%= food.name %></td>
+        <td><%= food.measurement_unit %></td>
+        <td><%= food.price %></td>
+        <td>
+          <%= form_for [@foods], method: :delete, data: {
+          confirm: 'Are you sure?' } do |f| %> <%= f.hidden_field :food_id %>
+          <%= f.submit 'Remove', class: 'btn btn-danger' %> <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
