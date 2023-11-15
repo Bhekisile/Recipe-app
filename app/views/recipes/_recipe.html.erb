@@ -1,0 +1,21 @@
+<div id="<%= dom_id recipe %>">
+<div class="recipe-card">
+  <div class="row g-0">
+    <div class="container1">
+     <h3 class="card-title"><%= recipe.name  %></h3>
+    <div class='sub-container'>
+    <%= link_to "View",  recipe_path(recipe.id), class: "link-to-view" %>
+    <%if can? :destroy, recipe %> 
+    <%= link_to "Delete",  recipe_path(recipe.id),  data: { "turbo-method": :delete, confirm: "Are you sure ?" }, class: "btn btn-outline-danger  fw-semibold fs-5 px-3" %>
+    <% end %>
+    </div>
+    </div>
+    <div class="container2">
+      <div class="card-body">
+        <h5 class="card-title"><%= recipe.name  %></h5>
+        <p class="card-text"><%= recipe.description  %></p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
