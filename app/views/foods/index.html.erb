@@ -1,4 +1,7 @@
 <div class="container custom-container mt-5">
+  <%= link_to "Sign out", destroy_user_session_path,
+        'data-turbo-method': :delete, class:"sign-out" %>
+<ul>
   <div class="mb-5 d-flex justify-content-end">
     <%= link_to 'Add Food', new_food_path(@foods), class: 'btn btn-info' %>
   </div>
