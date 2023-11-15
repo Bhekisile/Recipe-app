@@ -4,6 +4,10 @@ class RecipesFoodsController < ApplicationController
     @recipe_food.build_food
   end
 
+  def show
+    
+  end
+
   def create
     @recipe = Recipe.find(params[:recipe_id])
     food_id = recipe_food_params[:food_id]
