@@ -1,9 +1,8 @@
 class RecipesFoodsController < ApplicationController
-
   def create
     @recipe = Recipe.find(params[:recipe_id])
     food_id = recipe_food_params[:food_id]
-    existing_food = @recipe.recipe_foods.find_by(food_id: food_id)
+    existing_food = @recipe.recipe_foods.find_by(food_id:)
 
     if existing_food
       update_existing_food(existing_food)
