@@ -1,0 +1,24 @@
+<div class="recipe-details">
+  <h1 class="recipe-name"><%= @recipe.name %></h1>
+  <div class="detail-container">
+    <p>Preparation time: <%= @recipe.preparation_time %>
+      <%=  @recipe.preparation_time <= 1 ? 'hour' : 'hours' %>
+    </p>
+     <div class="toggle-btn">
+        <span class="check-toggle">
+          <strong> <%= @recipe.public ? 'Public' : 'Private'  %></strong>
+        </span>
+      <%= button_to 'Click to Toggle', public_toggle_recipe_path(@recipe), method: :patch, class: "click-toggle"%>
+      </div>
+    </div>
+    <p>Cooking time: <%= @recipe.cooking_time %>
+    <%= @recipe.preparation_time <= 1 ? 'hour' : 'hours' %>
+    </p>
+
+    <!-shopping list to be put here -!>
+   
+
+<div>
+  <%= link_to "Back to recipes", recipes_path, class: "back-recipes" %>
+</div>
+</div>
