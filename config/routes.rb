@@ -6,10 +6,10 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   root to: 'recipes#index'
-  resources :foods, only: %i[new create]
+  resources :foods, only: %i[index show new create destroy]
 
   resources :recipes, only: %i[index show new create destroy] do
-    resources :recipes_foods, only: %i[new create destroy]
+    resources :recipes_foods, only: %i[show create destroy]
   end
   resources :public_recipes, only: %i[index]
 
