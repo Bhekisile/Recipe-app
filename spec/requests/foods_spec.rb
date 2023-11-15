@@ -25,9 +25,13 @@ RSpec.describe 'Foods', type: :request do
     end
   end
 
-  describe 'GET /new' do
-    it 'renders a successful response' do
-      get new_food_url
-      expect(response).to be_successful
-    end
+  it 'renders the correct template' do
+    get new_food_path
+    expect(response).to render_template(:new)
+  end
+
+  it 'renders the correct placeholder text in the response body' do
+    get new_food_path
+    expect(response.body).to include('Add New Food')
+  end
 end
