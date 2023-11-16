@@ -1,0 +1,64 @@
+<div class="container d-flex flex-column justify-content-center align-items-start pt-5">
+  <h1 class="text-center"><%= @recipe.name %></h1>
+  <div class="d-flex justify-content-between align-items-center size">
+    <p>Preparation time: <%= @recipe.preparation_time %>
+      <%= @recipe.preparation_time <= 1 ? 'hour' : 'hours' %>
+    </p>
+    <div class="d-flex ms-5 align-items-center">
+     <% if current_user == @recipe.user %>
+      <div class="btn-group mb-2" role="group" aria-label="Recipe Visibility">
+        <%= button_to recipe_path(@recipe.id), :method => :patch, class: "btn btn-info", data: { toggle: "collapse", target: "#visibilityToggle" } do %>
+          <% if @recipe.public %>
+            Public
+            <i class="bi bi-eye"></i>
+          <% else %>
+            Private
+            <i class="bi bi-eye-slash"></i>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+  <p>Cooking time: <%= @recipe.cooking_time %>
+    <%= @recipe.preparation_time <= 1 ? 'hour' : 'hours' %>
+  </p>
+
+   <% if current_user == @recipe.user %>
+    <div id="recipe_actions" class="mb-4">
+    <%= link_to "Generate Shopping List", shopping_list_path(recipe_id: @recipe.id), class: "btn btn-success mr-2" %>
+      <%= link_to "Add Ingredient", recipes_path(@recipe.id), class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <!-- table for recipe foods -->
+  <div class="container mt-5">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>Food</th>
+          <th>Quantity</th>
+          <th>Value</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @recipe_foods&.each_with_index do |recipe_food, i| %>
+          <tr class='ingredient'>
+            <td><%= recipe_food.food.name %></td>
+            <td><%= recipe_food.quantity %></td>
+            <td><%= recipe_food.food.price * recipe_food.quantity %></td>
+            <td>
+              <%= button_to "Delete", recipe_recipe_food_path(@recipe, recipe_food), method: :delete, class: "btn btn-danger btn-sm mr-2"%>
+              <%= link_to "Edit", edit_recipe_recipe_food_path(@recipe, recipe_food), class: "btn btn-warning btn-sm mt-2" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <%= link_to "Back to recipes", recipes_path, class: "back-recipes" %>
+  </div>
+</div>
