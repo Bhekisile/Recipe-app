@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   root to: 'foods#index'
+  get '/shopping_list', to: 'recipes#shopping_list', as: 'shopping_list'
+  
   resources :foods, only: %i[index show new create destroy]
   resources :recipes_foods, only: %i[show create destroy]
   
@@ -14,5 +16,5 @@ Rails.application.routes.draw do
 
   resources :public_recipes, only: %i[index]
 
-  get '/shopping_list', to: 'recipes#shopping_list', as: 'shopping_list'
+  resources :shopping_lists, only: [:index]
 end

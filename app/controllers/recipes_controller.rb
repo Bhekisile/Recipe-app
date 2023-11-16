@@ -16,6 +16,24 @@ class RecipesController < ApplicationController
     end
   end
 
+ 
+  def shopping_list
+    # Use current_user's recipe or any other logic to determine which recipe to show
+    @recipe = current_user.recipes.last
+    
+    # Ensure that a recipe is available before proceeding
+    if @recipe.present?
+      @recipe_foods = @recipe.recipe_foods.includes(:food)
+      @all_foods = Food.all # Or use your logic to fetch all foods
+      @shopping = @all_foods - @recipe_foods.map(&:food)
+    else
+      redirect_to recipes_path, alert: 'No recipe found.'
+    end
+  end
+  
+
+
+
   def show
     @recipe_food = @recipe.recipe_foods.includes(:food)
   end
