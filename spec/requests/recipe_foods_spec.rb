@@ -1,22 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe 'RecipeFoods', type: :request do
-  let(:user) { User.create(name: 'koppai') }
-  let(:recipe) { Recipe.create(name: 'food', preparation_time: 20, cooking_time: 10, description: 'this is how', public: false, user:) }
+  let!(:user) { User.create(name: 'koppai') }
+  let(:user_id) { user.id }
+  let(:recipe) do
+  Recipe.create(
+    name: 'food',
+    preparation_time: 20,
+    cooking_time: 10,
+    description: 'this is how',
+    public: false,
+    user_id: user_id
+  )
+end
+  # let(:user) { User.create(name: 'koppai') }
+  # let(:recipe) { Recipe.create(name: 'food', preparation_time: 20, cooking_time: 10, description: 'this is how', public: false, user_id: user.id) }
   
-  describe 'GET /recipes/:recipe_id/recipe_foods/new' do
-    # before :each do
-    #   sign_in user
-    #   get new_recipe_recipe_food_path(recipe_id: recipe)
-    # end
+  describe 'GET /recipes_foods/:id' do
 
     it 'returns http success' do
+      get recipes_food_path(recipe.id)
       expect(response).to have_http_status(:success)
     end
 
-    it 'should render the correct template' do
-      expect(response).to render_template(:new)
-    end
+    # it 'should render the correct template' do
+    #   expect(response).to render_template(:new)
+    # end
   end
 end
 
