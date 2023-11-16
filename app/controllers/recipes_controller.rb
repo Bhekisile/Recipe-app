@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :destroy]
+  before_action :set_recipe, only: %i[show edit destroy]
 
   def index
     @recipes = Recipe.all
@@ -32,7 +32,7 @@ class RecipesController < ApplicationController
     authorize_user
     @recipe.destroy
     redirect_to recipes_path, notice: 'Recipe was successfully deleted.'
-  end  
+  end
 
   private
 
@@ -45,7 +45,10 @@ class RecipesController < ApplicationController
   end
 
   def authorize_user
-    redirect_to recipes_path, alert: "You are not authorized to perform this action." unless current_user == @recipe.user
+    return if current_user == @recipe.user
+
+    redirect_to recipes_path,
+                alert: 'You are not authorized to perform this action.'
   end
 
   def add_to_public_recipes
