@@ -73,3 +73,4 @@ end
 
 gem 'rails-controller-testing'
 gem 'cssbundling-rails'
+gem 'devise'
