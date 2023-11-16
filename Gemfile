@@ -72,5 +72,7 @@ group :test do
 end
 
 gem 'cancancan'
+
 gem 'cssbundling-rails'
 gem 'devise'
+gem 'rails-controller-testing'

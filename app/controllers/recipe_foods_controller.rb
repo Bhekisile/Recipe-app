@@ -1,4 +1,4 @@
-class RecipesFoodsController < ApplicationController
+class RecipeFoodsController < ApplicationController
   def create
     @recipe = Recipe.find(params[:recipe_id])
     food_id = recipe_food_params[:food_id]
