@@ -1,0 +1,12 @@
+<div class="recipes-container">
+<h1>Recipes</h1>
+<%= link_to "New recipe", new_recipe_path, class: "link-new-recipe" %>
+</div>
+
+
+<div id="recipes">
+  <% @recipes.each do |recipe| %>
+    <%= render recipe %>
+  <% end %>
+</div>
+</div>

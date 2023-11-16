@@ -1,0 +1,20 @@
+<div id="new-recipe">
+  <%= turbo_frame_tag "new_recipe_form" do %>
+    <%= render "form", recipe: @recipe %>
+
+    <% if @recipe.errors.any? %>
+      <div class="error-div">
+        <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+        <ul>
+          <% @recipe.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+  <%= link_to "Back to recipes", recipes_path %>
+</div>
+
+</div>
