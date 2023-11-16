@@ -1,0 +1,27 @@
+<div class="container d-flex flex-column  justify-content-center align-items-center pt-5">
+
+<h1 class="text-center w-100">Shopping List</h1>
+ <div class="d-flex justify-content-between align-items-center  w-100">
+    <h2>Amount of food items to buy: <%= @total_item %></h2>
+    <h2>Total value of food needed: $<%= @total_price %></h2>
+</div>
+<table class=" table mt-5">
+  <thead>
+    <tr>
+      <th scope="col">Food</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Unit Price</th>
+    </tr>
+  </thead>
+  <tbody id="foods">
+  <% @shopping.each do |food| %>
+    <tr>
+        <td><%= food.name%></td>
+        <td><%= food.quantity %> <%= food.measurement_unit %></td>
+        <td><%= food.price %>$</td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>
+
+</div>

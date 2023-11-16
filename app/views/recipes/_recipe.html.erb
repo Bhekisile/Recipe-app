@@ -1,16 +1,16 @@
 <div id="<%= dom_id recipe %>">
-<div class="recipe-card">
+<div class="card mb-3 mt-3 ms-5" style="width: 940px; margin-left: 100px;">
   <div class="row g-0">
-    <div class="container1">
-     <h3 class="card-title"><%= recipe.name  %></h3>
-    <div class='sub-container'>
-    <%= link_to "View",  recipe_path(recipe.id), class: "link-to-view" %>
+    <div class="col-md-4 p-3 d-flex flex-column justify-content-between">
+     <h3 class="card-title ps-2"><%= recipe.name  %></h3>
+    <div class='p-3'>
+    <%= link_to "View",  recipe_path(recipe.id), class: "btn btn-outline-info  fw-semibold fs-5 px-3"  %>
     <%if can? :destroy, recipe %> 
     <%= link_to "Delete",  recipe_path(recipe.id),  data: { "turbo-method": :delete, confirm: "Are you sure ?" }, class: "btn btn-outline-danger  fw-semibold fs-5 px-3" %>
     <% end %>
     </div>
     </div>
-    <div class="container2">
+    <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title"><%= recipe.name  %></h5>
         <p class="card-text"><%= recipe.description  %></p>
