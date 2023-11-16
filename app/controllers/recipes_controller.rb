@@ -1,38 +1,54 @@
 class RecipesController < ApplicationController
+  before_action :set_recipe, only: [:show, :edit, :destroy]
+
   def index
     @recipes = Recipe.all
   end
 
   def create
-    # @recipe = Recipe.new(recipe_params) -- for devise
-
-    # Ensure that a user is associated with the recipe
-    if user_signed_in?
-      @recipe = current_user.recipes.new(recipe_params)
-    else
-      # If user is not logged in, set a default user (you may need to adjust this logic)
-      @recipe = Recipe.new(recipe_params)
-      @recipe.user = User.find_by(email: 'default@example.com') # Replace with an existing user or create a default user
-    end
+    @recipe = current_user.recipes.new(recipe_params)
 
     if @recipe.save
-      redirect_to @recipe, notice: 'Recipe was successfully created.'
+      add_to_public_recipes if @recipe.public?
+      redirect_to recipes_path, notice: 'Recipe was successfully created.'
     else
       render :new
     end
   end
 
-  def show; end
+  def show
+    @recipe_food = @recipe.recipe_foods.includes(:food)
+  end
 
   def new
     @recipe = Recipe.new
   end
 
-  def edit; end
+  def edit
+    authorize_user
+  end
+
+  def destroy
+    authorize_user
+    @recipe.destroy
+    redirect_to recipes_path, notice: 'Recipe was successfully deleted.'
+  end  
 
   private
 
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+  end
+
   def recipe_params
     params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public)
+  end
+
+  def authorize_user
+    redirect_to recipes_path, alert: "You are not authorized to perform this action." unless current_user == @recipe.user
+  end
+
+  def add_to_public_recipes
+    @recipe.update(public: true)
   end
 end

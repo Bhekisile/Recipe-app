@@ -1,0 +1,24 @@
+<div class="container">
+  <h1 class="mt-4 mb-4">Public Recipes</h1>
+
+  <div class="card-deck">
+    <% @recipes.includes([:user]).includes([:recipe_foods]).each do |recipe| %>
+      <div class="card mb-4">
+        <div class="card-body">
+          <%= link_to "/recipes/#{recipe.id}" do %>
+            <h5 class="card-title"><%= recipe.name %> by <%= recipe.user.name %></h5>
+          <% end %>
+
+          <% if can? :destroy, recipe %>
+            <%= form_with model: recipe, url: recipe_path(recipe), method: :delete do |f| %>
+              <%= f.submit "REMOVE", class: "btn btn-danger btn-sm" %>
+            <% end %>
+          <% end %>
+
+          <p class="card-text">Total food items: <%= recipe.recipe_foods.length %></p>
+          <p class="card-text">Total price: <%= recipe.recipe_foods.sum { |recipe_food| recipe_food.food.price * recipe_food.quantity} %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

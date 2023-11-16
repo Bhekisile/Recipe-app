@@ -13,5 +13,8 @@
   },
   "browserslist": [
     "defaults"
-  ]
+  ],
+  "dependencies": {
+    "bootstrap-icons": "^1.11.0"
+  }
 }
