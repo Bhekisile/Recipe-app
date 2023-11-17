@@ -13,10 +13,8 @@ class FoodsController < ApplicationController
 
   def create
     @food = current_user.foods.build(food_params)
-
     if @food.save
       flash[:notice] = 'Food was successfully created.'
-      # Do not create a shopping list item here
       redirect_to foods_path(@food)
     else
       flash[:alert] = 'Food was not created.'
