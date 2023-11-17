@@ -19,5 +19,4 @@ Rails.application.routes.draw do
 
   get '/public_recipes', to: 'recipes#public_recipes', as: 'public_recipes'
 
-  resources :shopping_lists, only: [:index]
 end

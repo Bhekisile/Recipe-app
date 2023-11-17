@@ -25,7 +25,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @recipe_foods = @recipe.recipe_foods
+    @recipe_foods = @recipe.recipe_foods.includes(:food)
   end
 
   def new
@@ -43,19 +43,12 @@ class RecipesController < ApplicationController
   end
 
   def shopping_list
-    puts "Params: #{params.inspect}" # Add this line for debugging
-    @recipe = Recipe.find(params[:id])
-    @recipe_food = @recipe.recipe_foods.group(:food_id).sum(:quantity)
+    @recipe_food = current_user.recipe_foods.group(:food_id).sum(:quantity)
     @foods = current_user.foods
     @shopping = []
-
     @foods.each do |food|
       @shopping << food if !@recipe_food.key?(food.id) && !@shopping.include?(food)
     end
-
-    # Ensure @shopping is initialized even if empty
-    @shopping ||= []
-
     @total_price = @shopping.sum(&:price)
     @total_item = @shopping.count
   end
