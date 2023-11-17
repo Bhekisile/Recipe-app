@@ -5,9 +5,9 @@
      <h3 class="card-title ps-2"><%= recipe.name  %></h3>
     <div class='p-3'>
     <%= link_to "View",  recipe_path(recipe.id), class: "btn btn-outline-info  fw-semibold fs-5 px-3"  %>
-    <%if can? :destroy, recipe %> 
-    <%= link_to "Delete",  recipe_path(recipe.id),  data: { "turbo-method": :delete, confirm: "Are you sure ?" }, class: "btn btn-outline-danger  fw-semibold fs-5 px-3" %>
-    <% end %>
+     <% if can? :destroy, recipe %>
+            <%= link_to "Delete", recipe_path(recipe.id), data: { "turbo-method": :delete, action: :destroy }, class: "btn btn-outline-danger fw-semibold fs-5 px-3" %>
+          <% end %>
     </div>
     </div>
     <div class="col-md-8">

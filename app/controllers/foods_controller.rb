@@ -1,6 +1,6 @@
 class FoodsController < ApplicationController
   def index
-    @foods = Food.all
+    @foods = current_user.foods
   end
 
   def show
@@ -12,17 +12,32 @@ class FoodsController < ApplicationController
   end
 
   def create
-    @food = Food.new(food_params)
+    @food = current_user.foods.build(food_params)
+
     if @food.save
-      redirect_to recipes_path
+      flash[:notice] = 'Food was successfully created.'
+      # Do not create a shopping list item here
+      redirect_to foods_path(@food)
     else
-      render :new
+      flash[:alert] = 'Food was not created.'
+      render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
     @food = Food.find(params[:id])
+
+    # Remove the food from the shopping list when it is destroyed
+    @food.shopping_list_items.destroy_all if @food.respond_to?(:shopping_list_items)
+
     @food.destroy
-    redirect_to foods_path, notice: 'Food deleted successfully!'
+    flash[:notice] = 'Food was successfully destroyed.'
+    redirect_to foods_url
+  end
+
+  private
+
+  def food_params
+    params.require(:food).permit(:name, :measurement_unit, :price, :quantity)
   end
 end

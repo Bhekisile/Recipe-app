@@ -8,13 +8,17 @@ Rails.application.routes.draw do
   resources :foods, only: %i[index show new create destroy]
   resources :recipes_foods, only: %i[show create destroy]
   
-  resources :recipes, only: [:index, :new, :create, :show, :destroy] do
+  resources :recipes do
     member do
       patch :public_toggle
+      patch :update_public_status
+      patch :destroy, to: 'recipes#destroy'
     end
+  
+    resources :recipe_foods, only: [:index, :new, :create, :edit, :update, :destroy]
   end
+  
 
-  resources :public_recipes, only: %i[index]
+  get '/public_recipes', to: 'recipes#public_recipes', as: 'public_recipes'
 
-  resources :shopping_lists, only: [:index]
 end
