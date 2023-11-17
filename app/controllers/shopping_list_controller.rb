@@ -1,7 +1,6 @@
-class ShoppingListsController < ApplicationController
+class ShoppingListController < ApplicationController
   def index
-    @recipe = Recipe.find(params[:recipe_id])
-    @recipe_food = @recipe.recipe_foods.group(:food_id).sum(:quantity)
+    @recipe_food = current_user.recipe_foods.group(:food_id).sum(:quantity)
     @foods = current_user.foods
     @shopping = []
     @foods.each do |food|

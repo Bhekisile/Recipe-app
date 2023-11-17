@@ -11,10 +11,13 @@ Rails.application.routes.draw do
   resources :recipes, only: [:index, :new, :create, :show, :destroy] do
     member do
       patch :public_toggle
+      patch :update_public_status
     end
+
+    resources :recipe_foods, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 
-  resources :public_recipes, only: %i[index]
+  get '/public_recipes', to: 'recipes#public_recipes', as: 'public_recipes'
 
   resources :shopping_lists, only: [:index]
 end
