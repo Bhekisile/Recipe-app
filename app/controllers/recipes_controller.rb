@@ -43,6 +43,7 @@ class RecipesController < ApplicationController
   end
 
   def shopping_list
+    puts "Params: #{params.inspect}" # Add this line for debugging
     @recipe = Recipe.find(params[:id])
     @recipe_food = @recipe.recipe_foods.group(:food_id).sum(:quantity)
     @foods = current_user.foods
