@@ -1,5 +1,12 @@
 <div class="container d-flex flex-column justify-content-center align-items-start pt-5">
   <h1 class="text-center"><%= @recipe.name %></h1>
+
+    <!-- Toggle public/private button -->
+  <% if can? :update_public_status, @recipe %>
+    <%= button_to "CLick to Toggle", update_public_status_recipe_path(@recipe), method: :patch, class: "btn btn-warning btn-sm mt-2" %>
+  <% end %>
+
+
   <div class="d-flex justify-content-between align-items-center size">
     <p>Preparation time: <%= @recipe.preparation_time %>
       <%= @recipe.preparation_time <= 1 ? 'hour' : 'hours' %>
@@ -9,10 +16,10 @@
       <div class="btn-group mb-2" role="group" aria-label="Recipe Visibility">
         <%= button_to recipe_path(@recipe.id), :method => :patch, class: "btn btn-info", data: { toggle: "collapse", target: "#visibilityToggle" } do %>
           <% if @recipe.public %>
-            Public
+            Recipe is public
             <i class="bi bi-eye"></i>
           <% else %>
-            Private
+            Recipe is private
             <i class="bi bi-eye-slash"></i>
           <% end %>
         <% end %>
@@ -25,11 +32,12 @@
   </p>
 
    <% if current_user == @recipe.user %>
-    <div id="recipe_actions" class="mb-4">
-    <%= link_to "Generate Shopping List", shopping_list_path(recipe_id: @recipe.id), class: "btn btn-success mr-2" %>
-      <%= link_to "Add Ingredient", recipes_path(@recipe.id), class: "btn btn-primary" %>
-    </div>
-  <% end %>
+  <div id="recipe_actions" class="mb-4">
+    <%= link_to "Generate Shopping List", shopping_list_path(id: @recipe.id), class: "btn btn-success mr-2" %>
+    <%= link_to "Add Ingredient", new_recipe_path(@recipe.id), class: "btn btn-primary" %>
+  </div>
+<% end %>
+
 
   <!-- table for recipe foods -->
   <div class="container mt-5">
