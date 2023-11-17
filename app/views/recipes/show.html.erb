@@ -26,7 +26,7 @@
 
    <% if current_user == @recipe.user %>
   <div id="recipe_actions" class="mb-4">
-    <%= link_to "Generate Shopping List", shopping_list_recipe_path(@recipe), class: "btn btn-success mr-2" %>
+    <%= link_to "Generate Shopping List", shopping_list_path(id: @recipe.id), class: "btn btn-success mr-2" %>
     <%= link_to "Add Ingredient", recipes_path(@recipe.id), class: "btn btn-primary" %>
   </div>
 <% end %>
