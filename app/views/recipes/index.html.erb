@@ -1,0 +1,12 @@
+<div class="d-flex row ms-2 pt-5">
+<h1>Recipes</h1>
+<%= link_to "New recipe", new_recipe_path, class: "btn btn-primary p-1 mb-3", style: "width: 10rem;" %>
+</div>
+
+
+<div id="recipes">
+  <% @recipes.each do |recipe| %>
+    <%= render recipe %>
+  <% end %>
+</div>
+</div>
