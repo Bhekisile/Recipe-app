@@ -8,7 +8,7 @@ class RecipesController < ApplicationController
     if user_signed_in?
       @recipe = current_user.recipes.new(recipe_params)
     else
-      # If user is not logged in, set a default user (you may need to adjust this logic)
+      # If the user is not logged in, set a default user (you may need to adjust this logic)
       @recipe = Recipe.new(recipe_params)
       @recipe.user = User.find_by(email: 'default@example.com') # Replace with an existing user or create a default user
     end
@@ -38,8 +38,20 @@ class RecipesController < ApplicationController
 
   def update_public_status
     @recipe = Recipe.find(params[:id])
-    @recipe.update(public: !@recipe.public)
-    redirect_to recipe_path(@recipe), notice: 'Recipe status updated successfully.'
+    @recipe.toggle!(:public)
+
+    if @recipe.public
+      # Add the recipe to public recipes if it's marked as public
+      redirect_to public_recipes_path, notice: 'Recipe marked as public.'
+    else
+      redirect_to recipe_path(@recipe), notice: 'Recipe marked as private.'
+    end
+  end
+
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(public: false)
+    redirect_to recipes_path, notice: 'Recipe was successfully made private.'
   end
 
   def shopping_list

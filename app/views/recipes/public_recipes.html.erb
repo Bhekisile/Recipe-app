@@ -8,8 +8,8 @@
         <% end %>
 
         <% if can? :destroy, recipe %>
-          <%= form_with model: recipe, url: recipe_path(recipe), method: :delete do |f| %>
-            <%= f.submit "REMOVE", class: "btn btn-danger btn-sm" %>
+          <%= form_with(model: recipe, url: recipe_path(recipe), method: :patch) do |f| %>
+              <%= f.submit "REMOVE", class: "btn btn-danger btn-sm" %>
           <% end %>
         <% end %>
 

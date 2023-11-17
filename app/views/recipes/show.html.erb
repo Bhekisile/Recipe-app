@@ -1,5 +1,12 @@
 <div class="container d-flex flex-column justify-content-center align-items-start pt-5">
   <h1 class="text-center"><%= @recipe.name %></h1>
+
+    <!-- Toggle public/private button -->
+  <% if can? :update_public_status, @recipe %>
+    <%= button_to "CLick to Toggle", update_public_status_recipe_path(@recipe), method: :patch, class: "btn btn-warning btn-sm mt-2" %>
+  <% end %>
+
+
   <div class="d-flex justify-content-between align-items-center size">
     <p>Preparation time: <%= @recipe.preparation_time %>
       <%= @recipe.preparation_time <= 1 ? 'hour' : 'hours' %>
@@ -9,10 +16,10 @@
       <div class="btn-group mb-2" role="group" aria-label="Recipe Visibility">
         <%= button_to recipe_path(@recipe.id), :method => :patch, class: "btn btn-info", data: { toggle: "collapse", target: "#visibilityToggle" } do %>
           <% if @recipe.public %>
-            Public
+            Recipe is public
             <i class="bi bi-eye"></i>
           <% else %>
-            Private
+            Recipe is private
             <i class="bi bi-eye-slash"></i>
           <% end %>
         <% end %>
