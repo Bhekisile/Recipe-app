@@ -26,14 +26,15 @@ class FoodsController < ApplicationController
 
   def destroy
     @food = Food.find(params[:id])
-
+  
     # Remove the food from the shopping list when it is destroyed
-    current_user.shopping_list_items.where(food: @food).destroy_all
-
+    @food.shopping_list_items.destroy_all if @food.respond_to?(:shopping_list_items)
+  
     @food.destroy
     flash[:notice] = 'Food was successfully destroyed.'
     redirect_to foods_url
   end
+  
 
   private
 
