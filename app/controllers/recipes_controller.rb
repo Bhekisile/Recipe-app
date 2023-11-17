@@ -50,8 +50,16 @@ class RecipesController < ApplicationController
 
   def destroy
     @recipe = Recipe.find(params[:id])
-    @recipe.update(public: false)
-    redirect_to recipes_path, notice: 'Recipe was successfully made private.'
+    authorize! :destroy, @recipe
+
+    if @recipe.destroy
+      respond_to do |format|
+        format.turbo_stream { render turbo_stream: turbo_stream.remove(@recipe) }
+        format.html { redirect_to recipes_path, notice: 'Recipe was successfully deleted.' }
+      end
+    else
+      format.html { redirect_to recipes_path, notice: 'Failed to delete Recipe.' }
+    end
   end
 
   def shopping_list
