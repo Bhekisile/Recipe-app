@@ -12,17 +12,16 @@ class RecipesController < ApplicationController
       @recipe = Recipe.new(recipe_params)
       @recipe.user = User.find_by(email: 'default@example.com') # Replace with an existing user or create a default user
     end
-  
+
     # Set the public attribute based on the checkbox value
     @recipe.public = params[:recipe][:public] == '1'
-  
+
     if @recipe.save
       redirect_to @recipe, notice: 'Recipe was successfully created.'
     else
       render :new
     end
   end
-  
 
   def show
     @recipe = Recipe.find(params[:id])
@@ -40,7 +39,7 @@ class RecipesController < ApplicationController
   def update_public_status
     @recipe = Recipe.find(params[:id])
     @recipe.toggle!(:public)
-    
+
     if @recipe.public
       # Add the recipe to public recipes if it's marked as public
       redirect_to public_recipes_path, notice: 'Recipe marked as public.'
@@ -48,13 +47,12 @@ class RecipesController < ApplicationController
       redirect_to recipe_path(@recipe), notice: 'Recipe marked as private.'
     end
   end
-  
+
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.update(public: false)
     redirect_to recipes_path, notice: 'Recipe was successfully made private.'
   end
-  
 
   def shopping_list
     puts "Params: #{params.inspect}" # Add this line for debugging
