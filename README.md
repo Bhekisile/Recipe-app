@@ -120,12 +120,11 @@ To run tests, run the following command:
 
 - GitHub: [@Bhekisile](https://github.com/Bhekisile)
 - LinkedIn: [BhekisileJozi](https://www.linkedin.com/in/bhekisile-j-b9823369/)
+👤 Ikonde (Arnold) Nekemiah
 
-👤 **Author2**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@arnoldnekemiah](https://github.com/arnoldnekemiah)
+- Twitter: [@arnoldikonde](https://twitter.com/arnoldikonde)
+- LinkedIn: [Ikonde (Arnold) Nekemiah](https://www.linkedin.com/in/arnoldnekemiah/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
