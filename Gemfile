@@ -51,6 +51,7 @@ group :development, :test do
   gem 'debug', platforms: %i[mri windows]
   gem 'rspec-rails'
   gem 'rails-controller-testing'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -75,4 +76,3 @@ gem 'cancancan'
 
 gem 'cssbundling-rails'
 gem 'devise'
-gem 'factory_bot_rails'

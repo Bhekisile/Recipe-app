@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/shopping_list', to: 'recipes#shopping_list', as: 'shopping_list'
   
   resources :foods, only: %i[index show new create destroy]
-  resources :recipes_foods, only: %i[show create destroy]
+  resources :recipe_foods, only: %i[new show create destroy]
   
   resources :recipes, only: [:index, :new, :create, :show, :destroy] do
     member do
