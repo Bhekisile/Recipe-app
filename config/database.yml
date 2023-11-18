@@ -21,7 +21,7 @@ default: &default
 
 development:
   <<: *default
-  database: recipe_app
+  database: recipe_app_development
   username: postgres
   password: cherry
 
@@ -54,6 +54,3 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  database: recipe_app_production
-  username: recipe_app
-  password: <%= ENV["RECIPE_APP_DATABASE_PASSWORD"] %>
