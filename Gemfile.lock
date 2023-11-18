@@ -315,7 +315,7 @@ DEPENDENCIES
   factory_bot_rails
   importmap-rails
   jbuilder
-  pg (~> 1.1)
+  pg (~> 1.5, >= 1.5.4)
   puma (>= 5.0)
   rails (~> 7.1.1)
   rails-controller-testing
