@@ -323,6 +323,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 7.1.1)
   rails-controller-testing
+  rexml (~> 3.2, >= 3.2.4)
   rspec-rails
   rubocop (>= 1.0, < 2.0)
   selenium-webdriver
