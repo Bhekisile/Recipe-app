@@ -4,7 +4,6 @@ RSpec.describe 'Foods', type: :request do
   before do
     Rails.application.routes.default_url_options[:host] = 'localhost:3000/foods_path'
     # get foods_path
-
   end
   describe 'GET /index' do
     it 'returns a successful response' do
