@@ -21,20 +21,15 @@ default: &default
 
 development:
   <<: *default
-  database: recipe_app
-  username: my-blog-user
-  password: 12345
-  host: localhost
-  port: 5432
+  database: recipe_app_development
+  username: postgres
+  password: cherry
 
 test:
   <<: *default
   database: recipe_app_test
-  username: my-blog-user
-  password: 12345
-  host: localhost
-  port: 5432
-
+  username: postgres
+  password: cherry
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
@@ -57,6 +52,7 @@ test:
 #
 production:
   <<: *default
-  database: recipe_app_production
-  username: recipe_app
+  url: <%= ENV['DATABASE_URL'] %>
+  database: Recipe_App_production
+  username: Recipe_App
   password: <%= ENV["RECIPE_APP_DATABASE_PASSWORD"] %>
