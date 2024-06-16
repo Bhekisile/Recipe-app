@@ -9,6 +9,7 @@
 
 # Ignore all environment files (except templates).
 /*.env
+/*.env.production
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -32,8 +33,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-
-node_modules/
+/config/credentials.yml.enc
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
