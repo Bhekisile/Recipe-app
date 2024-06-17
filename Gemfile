@@ -65,6 +65,9 @@ group :development do
   # gem "spring"
 end
 
+# Add dotenv gem
+gem 'dotenv-rails', groups: %i[development test]
+
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'

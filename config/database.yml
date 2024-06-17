@@ -22,15 +22,15 @@ default: &default
 development:
   <<: *default
   database: recipe_app_development
-  username: process.env.APP_RAILWAY_DATABASE_USERNAME
-  password: process.env.APP_RAILWAY_DATABASE_PASSWORD
+  username: <%= ENV['APP_USERNAME'] %>
+  password: <%= ENV['APP_PASSWORD'] %>
 
 test:
   <<: *default
   database: recipe_app_test
-  username: process.env.TEST_APP_RAILWAY_DATABASE_USERNAME
-  password: process.env.TEST_APP_RAILWAY_DATABASE_PASSWORD
-  
+  username: <%= ENV['TEST_APP_USERNAME'] %>
+  password: <%= ENV['TEST_APP_PASSWORD'] %>
+
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
