@@ -24,6 +24,8 @@ development:
   database: recipe_app_development
   username: <%= ENV['APP_USERNAME'] %>
   password: <%= ENV['APP_PASSWORD'] %>
+  port: 5432
+  host: <%= ENV['APP_DATABASE_HOST'] %>
 
 test:
   <<: *default
@@ -38,7 +40,7 @@ test:
 # Instead, provide the password or a full connection URL as an environment
 # variable when you boot the app. For example:
 #
-#   DATABASE_URL="postgres://myuser:mypass@localhost/somedatabase"
+  # DATABASE_URL="postgres://myuser:mypass@localhost/somedatabase"
 #
 # If the connection URL is provided in the special DATABASE_URL environment
 # variable, Rails will automatically merge its configuration values on top of

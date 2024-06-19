@@ -9,7 +9,6 @@
 
 # Ignore all environment files (except templates).
 /*.env
-/*.env.production
 
 # Ignore all logfiles and tempfiles.
 /log/*
