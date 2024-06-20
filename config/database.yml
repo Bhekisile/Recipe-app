@@ -25,13 +25,14 @@ development:
   username: <%= ENV['APP_USERNAME'] %>
   password: <%= ENV['APP_PASSWORD'] %>
   port: 5432
-  host: <%= ENV['APP_DATABASE_HOST'] %>
+  host: localhost
 
 test:
   <<: *default
   database: recipe_app_test
   username: <%= ENV['TEST_APP_USERNAME'] %>
   password: <%= ENV['TEST_APP_PASSWORD'] %>
+  host: localhost
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
