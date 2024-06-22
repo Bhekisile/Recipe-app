@@ -23,7 +23,9 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  database: Recipe_App_production
-  username: Recipe_App
+  # database: Recipe_App_production
+  database: railway
+  # username: Recipe_App
+  username: postgres
   # password: <%= ENV["RECIPE_APP_DATABASE_PASSWORD"] %>
   password: <%= ENV["PGPASSWORD"] %>
