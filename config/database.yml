@@ -1,17 +1,3 @@
-# PostgreSQL. Versions 9.3 and up are supported.
-#
-# Install the pg driver:
-#   gem install pg
-# On macOS with Homebrew:
-#   gem install pg -- --with-pg-config=/usr/local/bin/pg_config
-# On Windows:
-#   gem install pg
-#       Choose the win32 build.
-#       Install PostgreSQL and put its /bin directory on your path.
-#
-# Configure Using Gemfile
-# gem "pg"
-#
 default: &default
   adapter: postgresql
   encoding: unicode
@@ -25,37 +11,18 @@ development:
   username: <%= ENV['APP_USERNAME'] %>
   password: <%= ENV['APP_PASSWORD'] %>
   port: 5432
-  host: <%= ENV['APP_DATABASE_HOST'] %>
+  host: localhost
 
 test:
   <<: *default
   database: recipe_app_test
   username: <%= ENV['TEST_APP_USERNAME'] %>
   password: <%= ENV['TEST_APP_PASSWORD'] %>
+  host: localhost
 
-# As with config/credentials.yml, you never want to store sensitive information,
-# like your database password, in your source code. If your source code is
-# ever seen by anyone, they now have access to your database.
-#
-# Instead, provide the password or a full connection URL as an environment
-# variable when you boot the app. For example:
-#
-  # DATABASE_URL="postgres://myuser:mypass@localhost/somedatabase"
-#
-# If the connection URL is provided in the special DATABASE_URL environment
-# variable, Rails will automatically merge its configuration values on top of
-# the values provided in this file. Alternatively, you can specify a connection
-# URL environment variable explicitly:
-#
-#   production:
-#     url: <%= ENV["MY_APP_DATABASE_URL"] %>
-#
-# Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
-# for a full overview on how database connection configuration can be specified.
-#
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  database: Recipe_App_production
-  username: Recipe_App
+  database: recipe_app_production
+  username: recipe_app
   password: <%= ENV["RECIPE_APP_DATABASE_PASSWORD"] %>
