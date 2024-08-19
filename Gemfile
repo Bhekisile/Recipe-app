@@ -66,7 +66,7 @@ group :development do
 end
 
 # Add dotenv gem
-gem 'dotenv-rails', groups: %i[development test]
+# gem 'dotenv-rails', groups: %i[development test]
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
@@ -79,3 +79,5 @@ gem 'cancancan'
 
 gem 'cssbundling-rails'
 gem 'devise'
+
+gem 'dotenv-rails'
