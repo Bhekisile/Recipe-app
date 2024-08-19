@@ -69,7 +69,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](https://recipe-app-production-d0e5.up.railway.app/)
+- [Live Demo Link](https://recipe-app-8lwd.onrender.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
